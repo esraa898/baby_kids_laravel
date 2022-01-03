@@ -28,7 +28,7 @@
                                     <div class="row" id="cancel-row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                             <h4>Contact'S Table</h4>
-                                            <button class="btn btn-info"> <a href="{{route('admin.contacts.create')}}" >Add New Contact</a> </button>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -62,9 +62,7 @@
                                                         </button>
                                                      </form>
                                                         </td>
-                                                        <td class="text-center">
-                                                            <a href="{{route('admin.contacts.edit',[$contact->id])}}" class="btn btn-warning"> Edit</a>
-                                                        </td>
+                                                      
                                                 
                                               
                                                 </tr>

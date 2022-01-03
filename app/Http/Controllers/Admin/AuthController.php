@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Interfaces\AuthInterface;
 use App\Http\Requests\SignUpRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,40 +16,31 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
+    public $AuthInterface;
+    public function __construct(AuthInterface $AuthInterface )
+    {
+       $this->AuthInterface=$AuthInterface;
+    }
     public function loginPage(){
-        return view('admin.login');
+        return $this->AuthInterface->loginPage();
     }
 
     public function login(LoginRequest $request){
-        $credentials = $request->only('email','password');
-       if(Auth::attempt($credentials)){
-        return redirect(route('admin.index'));
-         }
-         Alert::error('error ', 'User not found ');
-         return redirect()->back();
-           
-    
+       
+        return $this->AuthInterface->login($request);
     
     }
     public function logout(Request $request){
-
-    Session::flush();
-        Auth::logout();
-        return redirect(route('admin.loginpage'));
+        return $this->AuthInterface->logout($request);
+    
     }
 
     public function signUpPage(){
-        return view('admin.signup');
+        return $this->AuthInterface->signUpPage();
     }
 
     public function signUp(SignUpRequest $request){
-        user::create([
-            'name'=> $request->name,
-            'email'=> $request->email,
-            'password'=>Hash::make($request->password) 
-        ]);
-        Alert::success('Success Title', 'User was created ');
-        return redirect(route('admin.index'));
+        return $this->AuthInterface->signUp($request);
       
     }
 }

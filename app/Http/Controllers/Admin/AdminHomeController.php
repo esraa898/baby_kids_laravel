@@ -5,17 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Models\slider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Interfaces\HomeInterface;
 use Illuminate\Support\Facades\Auth;
 
 class AdminHomeController extends Controller
 {
-
+  public $HomeInterface;
+  public function __construct(HomeInterface $HomeInterface )
+  {
+     $this->HomeInterface=$HomeInterface;
+  }
 
     public function index()
     {
-     $username= Auth::user()->name;
-  
-      return view('Admin.index',compact('username'));
+    return $this->HomeInterface->index();
     }
 
     

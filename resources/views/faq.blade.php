@@ -1,4 +1,4 @@
-@include('assets/navbar');
+@include('assets/navbar')
 
 <section id="nicdark_parallax_title" class="nicdark_section nicdark_imgparallax nicdark_parallaxx_img6">
 
@@ -121,4 +121,4 @@
 <!--end-->
 
    
-@include('assets.footer');
+@include('assets.footer')

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Admin\AdminTeacherController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\EndUserController;
+use App\Http\Interfaces\EndUserInterface;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,15 +23,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
 //enduser routes
-Route::get('/',[EndUserController::class,'homeSlider'])->name('home.slider');
+Route::get('/',[EndUserController::class,'home'])->name('home');
 Route::group(['as' => 'home.'],function (){
 Route::get('/faq',[EndUserController::class,'faq'])->name('faq');
 Route::get('/teachers',[EndUserController::class,'teacher'])->name('teacher');
 Route::get('/courses',[EndUserController::class,'course'])->name('courses');
+Route::get('/contact',[EndUserController::class,'contact'])->name('contact');
+Route::post('/contact/create',[EndUserController::class,'contactCreate'])->name('contact.Create');
 });
 //auth
 Route::group(['prefix'=> 'admin' ,'as' => 'admin.'],function (){
@@ -75,12 +76,10 @@ Route::put('/update',[AdminActivityController::class,'update'])->name('update');
 
 //contacts route
 Route::group(['prefix'=>'contacts' ,'as'=>'contacts.'],function(){
-    Route::get('/create',[AdminContactsController::class,'create'])->name('create');
-    Route::post('/store',[AdminContactsController::class,'store'])->name('store');
+ 
     Route::get('/all',[AdminContactsController::class,'index'])->name('all');
     Route::delete('/delete',[AdminContactsController::class,'delete'])->name('delete');
-    Route::get('/edit/{contactID}',[AdminContactsController::class,'edit'])->name('edit');
-    Route::put('/update',[AdminContactsController::class,'update'])->name('update');
+  
 });
 
 // teachersRoutes

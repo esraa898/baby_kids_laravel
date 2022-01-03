@@ -8,27 +8,35 @@ use App\Models\slider;
 use App\Models\teacher;
 use App\Models\activity;
 use Illuminate\Http\Request;
+use App\Http\Interfaces\EndUserInterface;
+use App\Http\Requests\Contacts\AddContactRequest;
 
 class EndUserController extends Controller
 {
-    public function homeSlider(){
-        $sliders=slider::get();
-        $activites= activity::get();
-        $teachers= teacher::get();
-        return view('index',compact('sliders','activites','teachers'));
-      }
-    
-      public function faQ(){
-        $faqs=faq::get();
-        return view('faq',compact('faqs'));
-      }
-      public function teacher(){
-       
-        $teachers = teacher::with('course')->get();
-        return view('teachers',compact('teachers'));
-      }
-      public function course (){
-        $courses = course::get();
-        return view('courses',compact('courses'));
-      }
+    public $EndUserInterface;
+
+    public function __construct(EndUserInterface $EndUserInterface)
+    {
+      $this->EndUserInterface =$EndUserInterface;
+    }
+     
+    public function home(){
+      return $this->EndUserInterface->home();
+    }
+    public function faQ(){
+      return $this->EndUserInterface->faQ();
+    }
+    public function teacher(){
+      return $this->EndUserInterface->teacher();
+    }
+    public function course (){
+      return $this->EndUserInterface->course();
+    }
+    public function contact (){
+      return $this->EndUserInterface->contact();
+    }
+    public function contactCreate( AddContactRequest $request){
+      return $this->EndUserInterface->contactCreate(  $request);
+    }
+      
 }

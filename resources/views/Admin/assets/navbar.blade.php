@@ -255,9 +255,7 @@
                             <li>
                             <a href="{{route('admin.contacts.all')}}"> AllContacts </a>
                             </li>
-                            <li>
-                            <a href="{{route('admin.contacts.create')}}"> AddContact</a>
-                            </li>
+                           
                         </ul>
                     </li>
            

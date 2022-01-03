@@ -301,7 +301,7 @@
                                     <ul class="sub-menu">
                                         <li><a href="prices.html">Prices</a></li>
                                         <li>
-                                            <a href="teachers.html">Teachers</a>
+                                            <a href="{{route('home.teacher')}}">Teachers</a>
                                             <ul class="sub-menu">
                                                 <li><a href="teachers.html">All Teachers</a></li>
                                                 <li><a href="single-teacher.html">Single Teacher</a></li>
@@ -315,7 +315,7 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="courses.html">Courses</a>
+                                            <a href="{{route('home.courses')}}">Courses</a>
                                             <ul class="sub-menu">
                                                 <li><a href="courses.html">All Courses</a></li>
                                                 <li><a href="single-course.html">Single Course</a></li>
@@ -346,12 +346,12 @@
                                                 <li><a href="components-widgets.html">Widgets Solutions</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="faq.html">Faq</a></li>
+                                        <li><a href="{{route('home.faq')}}">Faq</a></li>
                                         <li><a href="404.html">404</a></li>
                                     </ul>
                                 </li>
                                 <li class="blue">
-                                    <a href="{{route('home.courses')}}">COURSES</a>
+                                    <a href="{{route('home.courses')}} ">COURSES</a>
                                     <ul class="sub-menu">
                                         <li><a href="courses.html">All Courses</a></li>
                                         <li><a href="single-course.html">Single Course</a></li>
@@ -441,6 +441,5 @@
 
 <!--end header-->
 
-</div>
 
-</div>
+

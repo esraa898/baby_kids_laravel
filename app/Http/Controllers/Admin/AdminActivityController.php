@@ -2,24 +2,27 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\activity;
-use Illuminate\Http\Request;
 use App\Http\Traits\ImagesTrait;
 use App\Http\Controllers\Controller;
+use App\Http\Interfaces\AdminInterface;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Activity\CreateActivityRequest;
 use App\Http\Requests\Activity\DeleteActivityRequest;
 use App\Http\Requests\Activity\UpdateActivityRequest;
 
-use function PHPUnit\Framework\isNull;
+
 
 class AdminActivityController extends Controller
 {
-
+   public $AdminInterface;
+    public function __construct(AdminInterface $AdminInterface)
+    {
+     $this->AdminInterface=$AdminInterface;   
+    }
     use ImagesTrait;
     public function create(){
 
-        return view('admin.activites.create');
+          return $this->AdminInterface->create(); 
     }
 
    /**
@@ -33,34 +36,17 @@ class AdminActivityController extends Controller
     *return
     */
     public function store(CreateActivityRequest $request){
-           $fileName= time().'_activity.png';
-           $this->uploadImage($request->icon,$fileName,'activity');
-           activity::create([
-               'title'=>$request->title,
-               'slug'=>$request->slug,
-               'icon'=>$fileName
-           ]);
-           Alert::success('Success Title', 'Activity created');
-           return redirect(route('admin.activity.all'));
-           
+        return $this->AdminInterface->store($request);
     }
     public function index(){
-      $activites=  activity::get();
-        return view('admin.activites.allactivites',compact('activites'));
+        return $this->AdminInterface->index();
     }
     public function delete(DeleteActivityRequest $request){
-       $activity= activity::find($request->activityID);
-       unlink(public_path($activity->icon));
-       $activity->delete();
-       Alert::success('Success Title', 'ActivityDeleted');
-       return redirect()->back();
+        return $this->AdminInterface->delete($request);
 
     }
     public function edit($activityID){
-        $activity= activity::find($activityID);
-
-        return view('admin.activites.edit',compact('activity'));
-
+        return $this->AdminInterface->edit($activityID);
     }
   
     
@@ -75,21 +61,6 @@ class AdminActivityController extends Controller
        * update data
        */
     public function update(UpdateActivityRequest $request){
-        $activity =activity::find($request->activityID);
-        
-        if($request->has('icon'))
-        {
-        $fileName=time().'_activity.png';
-        $this->uploadImage($request->icon,$fileName,'activity',$activity->icon);
-        }
-        $activity->update([
-            'title'   =>$request->title
-            ,'slug'   =>$request->slug,
-            'icon'    =>(isset($fileName)) ? $fileName : $activity->getRawOriginal('icon')
-        ]);
-      
-        Alert::success('Success Title', 'Activity Updated');
-        return redirect(route('admin.activity.all'));
-
+        return $this->AdminInterface->update($request);
     }
 }
