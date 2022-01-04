@@ -12,15 +12,21 @@ use App\Http\Interfaces\ContactInterface;
 class ContactAdminRepository implements ContactInterface
 {
    
-  
+    public $contact;
+    public $alert;
+   public function __construct(contact $contact ,Alert $alert)
+   {
+    $this->contact=$contact; 
+    $this->alert=$alert; 
+   }
     public function index(){
-        $contacts =contact::get();
+        $contacts = $this->contact::get();
         return view('admin.contacts.allcontact',compact('contacts'));
     }
   
     public function delete( $request){
-        contact::find($request->contactID)->delete();
-        Alert::success('Success Title', 'Contact deleted');
+        $this->contact::find($request->contactID)->delete();
+        $this->alert::success('Success Title', 'Contact deleted');
         return redirect()->back();
     }
   

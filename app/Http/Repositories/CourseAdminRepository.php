@@ -11,8 +11,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 class CourseAdminRepository implements CourseInterface
 {
     use ImagesTrait;
+    public $course;
+    public $alert;
+   public function __construct(course $course ,Alert $alert)
+   {
+    $this->course=$course; 
+    $this->alert=$alert; 
+   }
     public function index(){
-        $courses= course::with('allTeachers:id,name,course_id')->get();
+        $courses= $this->course::with('allTeachers:id,name,course_id')->get();
        
    //      foreach($courses as $course){
    //        foreach($course->allTeachers as $teacher){
@@ -29,32 +36,32 @@ class CourseAdminRepository implements CourseInterface
         $extension=$request->image->extension();
         $fileName= time().'_course.'.$extension;
         $this->uploadImage($request->image,$fileName,'course');
-        course::create([
+        $this->course::create([
             'name'=>$request->name,
             'description'=>$request->description,
             'price'=>$request->price,
             'img'=>$fileName
         ]);
-        Alert::success('Success Title', 'course created');
+        $this->alert::success('Success Title', 'course created');
     return redirect()->back();
 
     }
 
     public function delete( $request){
-      $course=  course::find($request->courseID);
+      $course= $this->course::find($request->courseID);
       unlink(public_path($course->img));
       $course->delete();
-      Alert::success('Success Title', 'course Deleted');
+      $this->alert::success('Success Title', 'course Deleted');
       return redirect()->back();
 
     }
     public function edit($courseID){
-       $course=  course::find($courseID);
+       $course=  $this->course::find($courseID);
        return view('admin.courses.edit',compact('course'));
         
     }
     public function update( $request){
-       $course=  course::find($request->courseID);
+       $course=  $this->course::find($request->courseID);
        if($request->has('image')){
            $extension=$request->image->extension();
            $fileName= time().'_course.'.$extension;
@@ -66,7 +73,7 @@ class CourseAdminRepository implements CourseInterface
            'price'=> $request->price,
            'img'=> (isset($fileName)) ? $fileName : $course->getRawOriginal('img')
        ]);
-       Alert::success('Success Title', 'course updated');
+       $this->alert::success('Success Title', 'course updated');
       return redirect(route('admin.course.all'));
 
     }

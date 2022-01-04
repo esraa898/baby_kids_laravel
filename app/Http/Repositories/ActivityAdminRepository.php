@@ -9,7 +9,15 @@ use App\Http\Interfaces\AdminInterface;
 
 class ActivityAdminRepository implements ActivityInterface
 {
-    use ImagesTrait;
+   
+    use ImagesTrait; 
+    public $activity;
+    public $alert;
+   public function __construct(activity $activity ,Alert $alert)
+   {
+    $this->activity=$activity; 
+    $this->alert=$alert; 
+   }
     public function create(){
 
         return view('admin.activites.create');
@@ -28,29 +36,29 @@ class ActivityAdminRepository implements ActivityInterface
     public function store( $request){
            $fileName= time().'_activity.png';
            $this->uploadImage($request->icon,$fileName,'activity');
-           activity::create([
+           $this->activity::create([
                'title'=>$request->title,
                'slug'=>$request->slug,
                'icon'=>$fileName
            ]);
-           Alert::success('Success Title', 'Activity created');
+           $this->alert::success('Success Title', 'Activity created');
            return redirect(route('admin.activity.all'));
            
     }
     public function index(){
-      $activites=  activity::get();
+      $activites=    $this->activity::get();
         return view('admin.activites.allactivites',compact('activites'));
     }
     public function delete( $request){
-       $activity= activity::find($request->activityID);
+       $activity=   $this->activity::find($request->activityID);
        unlink(public_path($activity->icon));
        $activity->delete();
-       Alert::success('Success Title', 'ActivityDeleted');
+       $this->alert::success('Success Title', 'ActivityDeleted');
        return redirect()->back();
 
     }
     public function edit($activityID){
-        $activity= activity::find($activityID);
+        $activity=   $this->activity::find($activityID);
 
         return view('admin.activites.edit',compact('activity'));
 
@@ -68,7 +76,7 @@ class ActivityAdminRepository implements ActivityInterface
        * update data
        */
     public function update( $request){
-        $activity =activity::find($request->activityID);
+        $activity =  $this->activity::find($request->activityID);
         
         if($request->has('icon'))
         {
@@ -81,7 +89,7 @@ class ActivityAdminRepository implements ActivityInterface
             'icon'    =>(isset($fileName)) ? $fileName : $activity->getRawOriginal('icon')
         ]);
       
-        Alert::success('Success Title', 'Activity Updated');
+        $this->alert::success('Success Title', 'Activity Updated');
         return redirect(route('admin.activity.all'));
 
     }

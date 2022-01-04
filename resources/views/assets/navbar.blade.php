@@ -280,7 +280,7 @@
                         <div class="nicdark_space20"></div>
 
                         <div class="nicdark_logo nicdark_marginleft10">
-                            <a href="index.html"><img alt="" src="img/logo.png"></a>
+                            <a href="{{route('home')}} "><img alt="" src="img/logo.png"></a>
                         </div>
 
                         <a class="nicdark_btn_icon nicdark_zoom nicdark_bg_yellow_hover nicdark_right_sidebar_btn_open nicdark_marginright10 nicdark_bg_orange extrasmall nicdark_radius white right"><i class="icon-basket-1"></i></a>
@@ -289,7 +289,7 @@
                             <ul class="nicdark_menu nicdark_margin010 nicdark_padding50">
 
                                 <li class="orange">
-                                    <a href="index.html">HOME</a>
+                                    <a href="{{route('home')}}" >HOME</a>
                                     <ul class="sub-menu">
                                         <li><a href="index.html">Home Default</a></li>
                                         <li><a href="index-2.html">Color Sections</a></li>
@@ -416,7 +416,7 @@
                                     </ul>
                                 </li>
                                 <li class="grey">
-                                    <a href="contact-1.html">CONTACTS</a>
+                                    <a href="{{route('home.contact')}} ">CONTACTS</a>
                                 </li>
                             </ul>
                         </nav>

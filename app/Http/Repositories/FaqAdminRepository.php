@@ -7,6 +7,13 @@ use App\Http\Interfaces\FaqInterface;
 
 class FaqAdminRepository implements FaqInterface
 {
+    public $faq;
+    public $alert;
+   public function __construct(faq $faq ,Alert $alert)
+   {
+    $this->faq=$faq; 
+    $this->alert=$alert; 
+   }
     public function create(){
         return view('Admin.faq.create');
        }
@@ -20,11 +27,11 @@ class FaqAdminRepository implements FaqInterface
        */
        public function store( $request){
     
-          faq::create([
+         $this->faq::create([
              'question'=>$request->question,
              'answer'=>$request->answer
           ]);
-          Alert::success('Success Title', 'faq was created ');
+          $this->alert::success('Success Title', 'faq was created ');
           return redirect()->back();
     
     
@@ -32,18 +39,18 @@ class FaqAdminRepository implements FaqInterface
     
        public function index()
        {
-         $faqs= faq::get();
+         $faqs= $this->faq::get();
           return view('Admin.faq.allfaq',compact('faqs'));
        }
     
      public function Delete( $request)
        {
-          faq::where('id',$request->faqID)->delete();
-          Alert::success('Success Title', 'faq was Deleted ');
+         $this->faq::where('id',$request->faqID)->delete();
+         $this->alert::success('Success Title', 'faq was Deleted ');
           return redirect()->back();
        }
        public function edit($faqID){
-        $faq=  faq::find($faqID);
+        $faq=  $this->faq::find($faqID);
           return view('Admin.faq.edit',compact('faq'));
        }
        /**
@@ -56,12 +63,12 @@ class FaqAdminRepository implements FaqInterface
         *4-return 
         */
        public function update( $request){
-          $faq= faq::find($request->faqID);
+          $faq= $this->faq::find($request->faqID);
           $faq->update([
              'question' =>$request->question,
              'answer'=>$request->answer
           ]);
-          Alert::success('Success Title', 'faq was updated');
+          $this->alert::success('Success Title', 'faq was updated');
           return redirect(route('admin.faq.all'));
     
        }

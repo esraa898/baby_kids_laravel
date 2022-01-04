@@ -9,6 +9,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class SliderAdminRepository implements SliderInterface
 { use ImagesTrait;
+    public $slider;
+    public $alert;
+   public function __construct(slider $slider ,Alert $alert)
+   {
+    $this->slider=$slider; 
+    $this->alert=$alert; 
+   }
     public function create(){
         return view('admin.slider.create');
     }
@@ -19,28 +26,28 @@ class SliderAdminRepository implements SliderInterface
         $filename= time().'_slider.png';
 
         $this->uploadImage($request->image ,$filename, 'slider');
-       slider::create([
+        $this->slider::create([
            'img' => $filename
        ]);
-       Alert::success('Success Title', 'slider created');
+       $this->alert::success('Success Title', 'slider created');
      return redirect()->back();
     }
     public function index(){
 
-       $sliders= slider::get();
+       $sliders=$this->slider::get();
         return view('admin.slider.allsliders',compact('sliders'));
     }
     public function delete( $request){
 
-       $slider= slider::find($request->sliderID);
+       $slider= $this->slider::find($request->sliderID);
        unlink(public_path($slider->img));
        $slider->delete();
-       Alert::success('Success Title', 'slider deleted  ');
+       $this->alert::success('Success Title', 'slider deleted  ');
        return redirect()->back();
       
     }
     public function edit($sliderID){
-        $slider= slider::find($sliderID);
+        $slider= $this->slider::find($sliderID);
         return view('admin.slider.edit',compact('slider'));
     }
     /**
@@ -54,12 +61,12 @@ class SliderAdminRepository implements SliderInterface
      * 
      */
     public function update( $request){
-       $slider= slider::find($request->sliderID); 
+       $slider=$this->slider::find($request->sliderID); 
           $fileName= time().'_slider.png';
           $this->uploadImage($request->image,$fileName,'slider',$slider->img) ;
           $slider->update([
               'img'=>$fileName
           ]);
-          Alert::success('Success Title', 'slider was updated   ');
+          $this->alert::success('Success Title', 'slider was updated   ');
           return redirect(route('admin.slider.all'));
     }}

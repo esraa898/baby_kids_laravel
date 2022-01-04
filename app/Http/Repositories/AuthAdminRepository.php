@@ -12,16 +12,23 @@ use App\Models\User;
 
 class AuthAdminRepository implements AuthInterface
 {
+    public $Auth;
+    public $alert;
+   public function __construct(Auth $auth ,Alert $alert)
+   {
+    $this->Auth=$auth; 
+    $this->alert=$alert; 
+   }
     public function loginPage(){
         return view('admin.login');
     }
 
     public function login( $request){
         $credentials = $request->only('email','password');
-       if(Auth::attempt($credentials)){
+       if($this->Auth::attempt($credentials)){
         return redirect(route('admin.index'));
          }
-         Alert::error('error ', 'User not found ');
+         $this->Auth::error('error ', 'User not found ');
          return redirect()->back();
            
     
@@ -30,7 +37,7 @@ class AuthAdminRepository implements AuthInterface
     public function logout($request){
 
     Session::flush();
-        Auth::logout();
+    $this->Auth::logout();
         return redirect(route('admin.loginpage'));
     }
 
@@ -44,7 +51,7 @@ class AuthAdminRepository implements AuthInterface
             'email'=> $request->email,
             'password'=>Hash::make($request->password) 
         ]);
-        Alert::success('Success Title', 'User was created ');
+        $this->alert::success('Success Title', 'User was created ');
         return redirect(route('admin.index'));
       
     }
