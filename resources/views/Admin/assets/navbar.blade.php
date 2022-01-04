@@ -162,7 +162,7 @@
                         </ul>
                     </li>
                     <li class="menu">
-                        <a href="#users" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="#starter-kit" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
                                 <span>Sliders</span>
@@ -171,7 +171,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled" id="users" data-parent="#accordionExample">
+                        <ul class="collapse submenu list-unstyled" id="starter-kit" data-parent="#accordionExample">
                             <li>
                             <a href="{{route('admin.slider.all')}}"> AllSliders </a>
                             </li>
@@ -180,8 +180,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="menu">
-                        <a href="#users" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu"> 
+                        <a href="#authentication" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                                 <span>Teachers</span>
@@ -190,7 +190,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled" id="users" data-parent="#accordionExample">
+                        <ul class="collapse submenu list-unstyled" id="authentication" data-parent="#accordionExample">
                             <li>
                             <a href="{{route('admin.teacher.all')}}"> AllTeacher </a>
                             </li>
@@ -203,7 +203,7 @@
          
 
                     <li class="menu">
-                        <a href="#users" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                                 <span>Courses</span>
@@ -212,7 +212,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled" id="users" data-parent="#accordionExample">
+                        <ul class="collapse submenu list-unstyled" id="pages" data-parent="#accordionExample">
                             <li>
                             <a href="{{route('admin.course.all')}}"> AllCourses </a>
                             </li>
@@ -242,7 +242,7 @@
                     </li>
                     
                     <li class="menu">
-                        <a href="#users" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="#forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                                 <span>Contacts</span>
@@ -251,7 +251,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled" id="users" data-parent="#accordionExample">
+                        <ul class="collapse submenu list-unstyled" id="forms" data-parent="#accordionExample">
                             <li>
                             <a href="{{route('admin.contacts.all')}}"> AllContacts </a>
                             </li>

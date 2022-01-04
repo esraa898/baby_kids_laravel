@@ -1,12 +1,13 @@
 <?php
 namespace App\Http\Repositories;
 
+use App\Http\Interfaces\ActivityInterface;
 use App\Models\activity;
 use App\Http\Traits\ImagesTrait;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Interfaces\AdminInterface;
 
-class ActivityAdminRepository implements AdminInterface
+class ActivityAdminRepository implements ActivityInterface
 {
     use ImagesTrait;
     public function create(){

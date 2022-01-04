@@ -18,23 +18,23 @@ class RepositoryServiceProvider extends ServiceProvider
          'App\Http\Repositories\EndUserRepository'
         );
         $this->app->bind(
-            'App\Http\Interfaces\AdminInterface',
+            'App\Http\Interfaces\FaqInterface',
             'App\Http\Repositories\FaqAdminRepository'
            );
            $this->app->bind(
-            'App\Http\Interfaces\AdminInterface',
+            'App\Http\Interfaces\ActivityInterface',
             'App\Http\Repositories\ActivityAdminRepository'
            );
            $this->app->bind(
-            'App\Http\Interfaces\AdminInterface',
+            'App\Http\Interfaces\CourseInterface',
             'App\Http\Repositories\CourseAdminRepository'
            );
            $this->app->bind(
-            'App\Http\Interfaces\AdminInterface',
+            'App\Http\Interfaces\TeacherInterface',
             'App\Http\Repositories\TeacherAdminRepository'
            );
            $this->app->bind(
-            'App\Http\Interfaces\AdminInterface',
+            'App\Http\Interfaces\SliderInterface',
             'App\Http\Repositories\SliderAdminRepository'
            );
            $this->app->bind(

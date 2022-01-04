@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Traits\ImagesTrait;
 use App\Http\Controllers\Controller;
-use App\Http\Interfaces\AdminInterface;
+use App\Http\Interfaces\ActivityInterface;
+
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Activity\CreateActivityRequest;
 use App\Http\Requests\Activity\DeleteActivityRequest;
@@ -14,15 +15,15 @@ use App\Http\Requests\Activity\UpdateActivityRequest;
 
 class AdminActivityController extends Controller
 {
-   public $AdminInterface;
-    public function __construct(AdminInterface $AdminInterface)
+   public $ActivityInterface;
+    public function __construct(ActivityInterface $ActivityInterface)
     {
-     $this->AdminInterface=$AdminInterface;   
+     $this->ActivityInterface=$ActivityInterface;   
     }
     use ImagesTrait;
     public function create(){
 
-          return $this->AdminInterface->create(); 
+          return $this->ActivityInterface->create(); 
     }
 
    /**
@@ -36,17 +37,17 @@ class AdminActivityController extends Controller
     *return
     */
     public function store(CreateActivityRequest $request){
-        return $this->AdminInterface->store($request);
+        return $this->ActivityInterface->store($request);
     }
     public function index(){
-        return $this->AdminInterface->index();
+        return $this->ActivityInterface->index();
     }
     public function delete(DeleteActivityRequest $request){
-        return $this->AdminInterface->delete($request);
+        return $this->ActivityInterface->delete($request);
 
     }
     public function edit($activityID){
-        return $this->AdminInterface->edit($activityID);
+        return $this->ActivityInterface->edit($activityID);
     }
   
     
@@ -61,6 +62,6 @@ class AdminActivityController extends Controller
        * update data
        */
     public function update(UpdateActivityRequest $request){
-        return $this->AdminInterface->update($request);
+        return $this->ActivityInterface->update($request);
     }
 }

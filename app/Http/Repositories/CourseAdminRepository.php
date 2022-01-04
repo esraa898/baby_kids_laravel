@@ -4,10 +4,11 @@ namespace App\Http\Repositories;
 
 use App\Models\course;
 use App\Http\Interfaces\AdminInterface;
+use App\Http\Interfaces\CourseInterface;
 use App\Http\Traits\ImagesTrait;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class CourseAdminRepository implements AdminInterface
+class CourseAdminRepository implements CourseInterface
 {
     use ImagesTrait;
     public function index(){

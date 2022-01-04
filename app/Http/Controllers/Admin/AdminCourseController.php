@@ -7,7 +7,8 @@ use App\Models\teacher;
 use Illuminate\Http\Request;
 use App\Http\Traits\ImagesTrait;
 use App\Http\Controllers\Controller;
-use App\Http\Interfaces\AdminInterface;
+
+use App\Http\Interfaces\CourseInterface;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\courses\AddCourseRequest;
 use App\Http\Requests\courses\DeleteCourseRequest;
@@ -15,34 +16,34 @@ use App\Http\Requests\courses\UpdateCourseRequest;
 
 class AdminCourseController extends Controller
 { 
-    public $AdminInterface;
-    public function __construct(AdminInterface $AdminInterface)
+    public $CourseInterface;
+    public function __construct(CourseInterface $CourseInterface)
     {
-     $this->AdminInterface=$AdminInterface;   
+     $this->CourseInterface=$CourseInterface;   
     }
     use ImagesTrait;
      public function index(){
-      return $this->AdminInterface->index();
+      return $this->CourseInterface->index();
      }
 
      public function create(){
-        return $this->AdminInterface->create(); 
+        return $this->CourseInterface->create(); 
      }
      public function store(AddCourseRequest $request){
-        return $this->AdminInterface->store($request);
+        return $this->CourseInterface->store($request);
      }
 
      public function delete(DeleteCourseRequest $request){
-        return $this->AdminInterface->Delete($request);
+        return $this->CourseInterface->Delete($request);
       
 
      }
      public function edit($courseID){
-        return $this->AdminInterface->edit($courseID);
+        return $this->CourseInterface->edit($courseID);
          
      }
      public function update(UpdateCourseRequest $request){
-        return $this->AdminInterface->update($request);
+        return $this->CourseInterface->update($request);
      }
      
 }

@@ -4,10 +4,10 @@ namespace App\Http\Repositories;
 
 use App\Models\slider;
 use App\Http\Traits\ImagesTrait;
-use App\Http\Interfaces\AdminInterface;
+use App\Http\Interfaces\SliderInterface;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class SliderAdminRepository implements AdminInterface
+class SliderAdminRepository implements SliderInterface
 { use ImagesTrait;
     public function create(){
         return view('admin.slider.create');

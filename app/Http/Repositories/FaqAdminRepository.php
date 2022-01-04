@@ -3,9 +3,9 @@ namespace App\Http\Repositories;
 
 use App\Models\faq;
 use RealRashid\SweetAlert\Facades\Alert;
-use App\Http\Interfaces\AdminInterface;
+use App\Http\Interfaces\FaqInterface;
 
-class FaqAdminRepository implements AdminInterface
+class FaqAdminRepository implements FaqInterface
 {
     public function create(){
         return view('Admin.faq.create');

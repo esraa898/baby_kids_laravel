@@ -4,10 +4,10 @@ namespace App\Http\Repositories;
 
 use App\Models\teacher;
 use App\Http\Traits\ImagesTrait;
-use App\Http\Interfaces\AdminInterface;
+use App\Http\Interfaces\TeacherInterface;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class TeacherAdminRepository implements AdminInterface
+class TeacherAdminRepository implements TeacherInterface
 {
     use ImagesTrait;
     public function index(){
